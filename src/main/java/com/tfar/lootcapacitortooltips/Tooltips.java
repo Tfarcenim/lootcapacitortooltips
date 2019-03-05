@@ -4,7 +4,6 @@ import crazypants.enderio.base.capacitor.ItemCapacitor;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -16,6 +15,9 @@ import java.util.ArrayList;
 public class Tooltips {
     @Config.Name("Enable Flavor Text?")
     public static boolean enableFlavorText = false;
+    @Config.Name("Precision")
+    public static int round = 2;
+    public static int exp = 10^round;
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void onItemTooltip(ItemTooltipEvent event) {
@@ -30,23 +32,38 @@ public class Tooltips {
             NBTTagCompound nbtCap = nbt.getCompoundTag("eiocap");
 
             float level = nbtCap.getFloat("level");
+            level = Math.round(level*exp)/exp;
 
             tooltip.add("Global Level: " + TextFormatting.fromColorIndex(getColor(level)) + level);
 
             float painter = nbtCap.getFloat(s + "painter/use");
+            painter = Math.round(painter*exp)/exp;
             float combustion = nbtCap.getFloat(s + "combustion_generator/gen");
+            combustion = Math.round(combustion*exp)/exp;
             float enhanced_combustion = nbtCap.getFloat(s + "enhanced_combustion_generator/gen");
+            enhanced_combustion = Math.round(enhanced_combustion*exp)/exp;
             float alloy_smelter = nbtCap.getFloat(s + "alloy_smelter/use");
+            alloy_smelter = Math.round(alloy_smelter*exp)/exp;
             float vat = nbtCap.getFloat(s + "vat/use");
+            vat = Math.round(vat*exp)/exp;
             float farm_station = nbtCap.getFloat(s + "farm_station/bonus_size");
+            farm_station = Math.round(farm_station*exp)/exp;
             float slice_and_splice = nbtCap.getFloat(s + "slice_and_splice/use");
+            slice_and_splice = Math.round(slice_and_splice*exp)/exp;
             float energy_intake = nbtCap.getFloat("energy_intake");
+            energy_intake = Math.round(energy_intake*exp)/exp;
             float sag_mill = nbtCap.getFloat(s + "sag_mill/use");
+            sag_mill = Math.round(sag_mill*exp)/exp;
             float stirling_generator = nbtCap.getFloat(s + "stirling_generator/gen");
+            stirling_generator = Math.round(stirling_generator*exp)/exp;
             float powered_spawner = nbtCap.getFloat(s + "powered_spawner/speed");
+            powered_spawner = Math.round(powered_spawner*exp)/exp;
             float soul_binder = nbtCap.getFloat(s + "soul_binder/use");
+            soul_binder = Math.round(soul_binder*exp)/exp;
             float energy_buffer = nbtCap.getFloat("energy_buffer");
+            energy_buffer = Math.round(energy_buffer*exp)/exp;
             float area = nbtCap.getFloat("area");
+            area = Math.round(area*exp)/exp;
 
             if (painter > 0)
                 tooltip.add("Painting Machine: " + TextFormatting.fromColorIndex(getColor(painter)) + painter);
