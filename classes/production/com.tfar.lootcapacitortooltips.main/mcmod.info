@@ -1,0 +1,16 @@
+[
+{
+  "modid": "lootcapacitortooltips",
+  "name": "Loot Capacitor Tooltips",
+  "description": "Adds tooltips to the loot capacitors to show their effectiveness",
+	"version": "${version}",
+	"mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Tfar"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

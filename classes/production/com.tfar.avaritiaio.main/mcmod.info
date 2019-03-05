@@ -1,0 +1,16 @@
+[
+{
+  "modid": "avaritiaio",
+  "name": "Avaritia IO",
+  "description": "Cross-mod integration between Avaritia and Ender IO.",
+	"version": "${version}",
+	"mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Tfar"],
+  "credits": "Many People",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

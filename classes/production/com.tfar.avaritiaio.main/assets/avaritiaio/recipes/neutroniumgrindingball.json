@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " i ",
+    "iii",
+    " i "
+  ],
+  "key": {
+    "i": {
+      "type": "forge:ore_dict",
+      "ore": "ingotCosmicNeutronium"
+    }
+  },
+  "result": {
+    "item": "avaritiaio:grindingballneutronium",
+    "count": 64
+
+  }
+}
