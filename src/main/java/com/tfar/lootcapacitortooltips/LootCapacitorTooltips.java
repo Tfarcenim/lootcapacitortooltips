@@ -5,7 +5,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 
-@Mod(modid = "lootcapacitortooltips", name = "Loot Capacitor Tooltips", version = "1.1", dependencies = "required:enderio",
+@Mod(modid = "lootcapacitortooltips", name = "Loot Capacitor Tooltips", version = "1.2", dependencies = "required:enderio",
         clientSideOnly = true, acceptedMinecraftVersions = "1.12.2,")
 public class LootCapacitorTooltips {
     @EventHandler

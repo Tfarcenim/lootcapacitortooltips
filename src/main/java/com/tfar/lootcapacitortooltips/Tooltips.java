@@ -10,6 +10,7 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 @Config(modid = "lootcapacitortooltips")
 public class Tooltips {
@@ -17,7 +18,6 @@ public class Tooltips {
     public static boolean enableFlavorText = false;
     @Config.Name("Precision")
     public static int round = 2;
-    public static int exp = 10^round;
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void onItemTooltip(ItemTooltipEvent event) {
@@ -32,70 +32,58 @@ public class Tooltips {
             NBTTagCompound nbtCap = nbt.getCompoundTag("eiocap");
 
             float level = nbtCap.getFloat("level");
-            level = Math.round(level*exp)/exp;
 
-            tooltip.add("Global Level: " + TextFormatting.fromColorIndex(getColor(level)) + level);
+            tooltip.add("Global Level: " + TextFormatting.fromColorIndex(getColor(level)) + roundAvoid(level,round));
 
             float painter = nbtCap.getFloat(s + "painter/use");
-            painter = Math.round(painter*exp)/exp;
             float combustion = nbtCap.getFloat(s + "combustion_generator/gen");
-            combustion = Math.round(combustion*exp)/exp;
             float enhanced_combustion = nbtCap.getFloat(s + "enhanced_combustion_generator/gen");
-            enhanced_combustion = Math.round(enhanced_combustion*exp)/exp;
             float alloy_smelter = nbtCap.getFloat(s + "alloy_smelter/use");
-            alloy_smelter = Math.round(alloy_smelter*exp)/exp;
             float vat = nbtCap.getFloat(s + "vat/use");
-            vat = Math.round(vat*exp)/exp;
             float farm_station = nbtCap.getFloat(s + "farm_station/bonus_size");
-            farm_station = Math.round(farm_station*exp)/exp;
             float slice_and_splice = nbtCap.getFloat(s + "slice_and_splice/use");
-            slice_and_splice = Math.round(slice_and_splice*exp)/exp;
             float energy_intake = nbtCap.getFloat("energy_intake");
-            energy_intake = Math.round(energy_intake*exp)/exp;
             float sag_mill = nbtCap.getFloat(s + "sag_mill/use");
-            sag_mill = Math.round(sag_mill*exp)/exp;
             float stirling_generator = nbtCap.getFloat(s + "stirling_generator/gen");
-            stirling_generator = Math.round(stirling_generator*exp)/exp;
             float powered_spawner = nbtCap.getFloat(s + "powered_spawner/speed");
-            powered_spawner = Math.round(powered_spawner*exp)/exp;
             float soul_binder = nbtCap.getFloat(s + "soul_binder/use");
-            soul_binder = Math.round(soul_binder*exp)/exp;
             float energy_buffer = nbtCap.getFloat("energy_buffer");
-            energy_buffer = Math.round(energy_buffer*exp)/exp;
             float area = nbtCap.getFloat("area");
-            area = Math.round(area*exp)/exp;
 
             if (painter > 0)
-                tooltip.add("Painting Machine: " + TextFormatting.fromColorIndex(getColor(painter)) + painter);
+                tooltip.add("Painting Machine: " + TextFormatting.fromColorIndex(getColor(painter)) + roundAvoid(painter,round));
             if (combustion > 0)
-                tooltip.add("Combustion Generator: " + TextFormatting.fromColorIndex(getColor(combustion)) + combustion);
+                tooltip.add("Combustion Generator: " + TextFormatting.fromColorIndex(getColor(combustion)) + roundAvoid(combustion,round));
             if (enhanced_combustion > 0)
-                tooltip.add("Enhanced Combustion Generator: " + TextFormatting.fromColorIndex(getColor(enhanced_combustion)) + enhanced_combustion);
+                tooltip.add("Enhanced Combustion Generator: " + TextFormatting.fromColorIndex(getColor(enhanced_combustion)) + roundAvoid(enhanced_combustion,round));
             if (alloy_smelter > 0)
-                tooltip.add("Alloy Smelter: " + TextFormatting.fromColorIndex(getColor(enhanced_combustion)) + alloy_smelter);
+                tooltip.add("Alloy Smelter: " + TextFormatting.fromColorIndex(getColor(alloy_smelter)) + roundAvoid(alloy_smelter,round));
             if (vat > 0)
-                tooltip.add("The Vat: " + TextFormatting.fromColorIndex(getColor(vat))+vat);
+                tooltip.add("The Vat: " + TextFormatting.fromColorIndex(getColor(vat))+roundAvoid(vat,round));
             if (farm_station > 0)
-                tooltip.add("Farming Station Size: " + TextFormatting.fromColorIndex(getColor(farm_station))+farm_station);
+                tooltip.add("Farming Station Size: " + TextFormatting.fromColorIndex(getColor(farm_station))+roundAvoid(farm_station,round));
             if (slice_and_splice > 0)
-                tooltip.add("Slice & Splice: " + TextFormatting.fromColorIndex(getColor(slice_and_splice))+slice_and_splice);
+                tooltip.add("Slice & Splice: " + TextFormatting.fromColorIndex(getColor(slice_and_splice))+roundAvoid(slice_and_splice,round));
             if (energy_intake > 0)
-                tooltip.add("Energy Input: " + TextFormatting.fromColorIndex(getColor(energy_buffer))+energy_buffer);
+                tooltip.add("Energy Input: " + TextFormatting.fromColorIndex(getColor(energy_buffer))+roundAvoid(energy_buffer,round));
             if (sag_mill > 0)
-                tooltip.add("SAG Mill: " + TextFormatting.fromColorIndex(getColor(sag_mill))+sag_mill);
+                tooltip.add("SAG Mill: " + TextFormatting.fromColorIndex(getColor(sag_mill))+roundAvoid(sag_mill,round));
             if (stirling_generator > 0)
-                tooltip.add("Stirling Generator: " + TextFormatting.fromColorIndex(getColor(stirling_generator))+stirling_generator);
+                tooltip.add("Stirling Generator: " + TextFormatting.fromColorIndex(getColor(stirling_generator))+roundAvoid(stirling_generator,round));
             if (powered_spawner > 0)
-                tooltip.add("Powered Spawner Speed: " + TextFormatting.fromColorIndex(getColor(powered_spawner))+powered_spawner);
+                tooltip.add("Powered Spawner Speed: " + TextFormatting.fromColorIndex(getColor(powered_spawner))+roundAvoid(powered_spawner,round));
             if (soul_binder > 0)
-                tooltip.add("Soul Binder: " + TextFormatting.fromColorIndex(getColor(soul_binder))+soul_binder);
+                tooltip.add("Soul Binder: " + TextFormatting.fromColorIndex(getColor(soul_binder))+roundAvoid(soul_binder,round));
             if (energy_buffer > 0)
-                tooltip.add("Energy Capacity: " + TextFormatting.fromColorIndex(getColor(energy_buffer))+energy_buffer);
+                tooltip.add("Energy Capacity: " + TextFormatting.fromColorIndex(getColor(energy_buffer))+roundAvoid(energy_buffer,round));
             if (area > 0)
-                tooltip.add("Area: " + TextFormatting.fromColorIndex(getColor(area))+area);
+                tooltip.add("Area: " + TextFormatting.fromColorIndex(getColor(area))+roundAvoid(area,round));
         }
     }
-
+    public static double roundAvoid(float value, int places) {
+        double scale = Math.pow(10, places);
+        return Math.round(value * scale) / scale;
+    }
     public int getColor(float key) {
         int color = (int) Math.floor((double) key);
         switch (color) {
