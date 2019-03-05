@@ -10,7 +10,6 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 @Config(modid = "lootcapacitortooltips")
 public class Tooltips {
