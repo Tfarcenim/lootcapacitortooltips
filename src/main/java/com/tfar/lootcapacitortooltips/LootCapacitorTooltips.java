@@ -15,6 +15,4 @@ public class LootCapacitorTooltips {
     @EventHandler
     public static void Postinit(FMLPostInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(new Tooltips());
-        if (Loader.isModLoaded("enderioendergy") &&
-                Tooltips.showEndergyCapacitors)MinecraftForge.EVENT_BUS.register(new EndergyTooltips());
     }}

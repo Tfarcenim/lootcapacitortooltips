@@ -21,7 +21,7 @@ compileJava {
 }
 
 minecraft {
-    version = "1.12.2-14.23.5.2796"
+    version = "1.12.2-14.23.5.2847"
     runDir = "run"
     
     // the mappings can be changed at any time, and must be in the following format.
@@ -42,16 +42,27 @@ repositories {
     maven {
         name = "Jared"
         url = "http://maven.blamejared.com/"
-    }    
+    }
     maven {
-        name = "Ender IO"
-        url = "https://maven2.tterrag.com/"
+        name = "EnderIO"
+        url = "https://maven.tterrag.com/"
+    }
+    maven {
+        name = "EnderIO - Temp"
+        url = "https://maven.hypherionmc.me/"
     }
 }
 dependencies {
-    deobfCompile "com.enderio:EnderIO:${mc_version}-5.0.39"
-    deobfCompile "deobf.com.enderio:endergy:${mc_version}-5.0.39"
-    compile "info.loenwind.autoconfig:AutoConfig:${mc_version}-1.0.1"
+
+    deobfCompile "com.enderio.core:EnderCore:${mc_version}-${ec_version}"
+
+    deobfCompile ("com.enderio:EnderIO:${mc_version}-${enderio_version}") {
+        transitive = false
+    }
+
+    compile "info.loenwind.autoconfig:AutoConfig:${mc_version}-1.0.2"
+    compile "info.loenwind.autosave:AutoSave:${mc_version}-${autosave_version}"
+
 
     // you may put jars on which you depend on in ./libs
     // or you may define them like so..

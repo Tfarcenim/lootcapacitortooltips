@@ -1,5 +1,6 @@
 package com.tfar.lootcapacitortooltips;
 
+import crazypants.enderio.api.capacitor.CapabilityCapacitorData;
 import crazypants.enderio.base.capacitor.ItemCapacitor;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
@@ -24,14 +25,11 @@ public class Tooltips {
     public static int round = 2;
     @Config.Name("Show Levels of Regular Capacitors?")
     public static boolean showRegularCapacitors = true;
-    @Config.Name("Show Levels of Endergy Capacitors?")
-    public static boolean showEndergyCapacitors = true;
-    @Config.Name("Show Durability of Totemic Capacitor?")
-    public static boolean showTotemicDurability = true;
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void onItemTooltip(ItemTooltipEvent event) {
         ItemStack stack = event.getItemStack();
+        //if loot capacitor
         if (stack.getItem() instanceof ItemCapacitor && (stack.getItemDamage() == 3 || stack.getItemDamage() == 4)) {
             NBTTagCompound nbt = stack.getTagCompound();
             ArrayList<String> tooltip = (ArrayList<String>) event.getToolTip();
@@ -73,7 +71,7 @@ public class Tooltips {
                 tooltip.add(I18n.format(s3+key) + " " + TextFormatting.DARK_RED + TextFormatting.BOLD + roundAvoid(value,round));
             }
         }
-        else if (stack.getItem() instanceof ItemCapacitor && showRegularCapacitors){
+        else if (stack.hasCapability(CapabilityCapacitorData.getCapNN(),null) && showRegularCapacitors) {
             int l = stack.getItemDamage()+1;
             ArrayList<String> tooltip = (ArrayList<String>) event.getToolTip();
                     tooltip.add(I18n.format(s1) + " " + TextFormatting.fromColorIndex(getColor(l))+ l);
@@ -86,7 +84,7 @@ public class Tooltips {
     }
 
     public static int getColor(float key) {
-        int color = (int) Math.floor((double) key);
+        int color = (int) Math.floor(key);
         switch (color) {
             case 0: {
                 return 4;
